@@ -10,7 +10,7 @@ sbx secret set openai
 git switch main
 ```
 
-`sbx secret set openai` prompts on the host; proxy-managed credentials stay on the host rather than becoming files or environment variables in the VM ([credential storage](https://docs.docker.com/ai/sandboxes/configuration/credentials/#store-a-secret)). Do not configure a GitHub secret for these sandboxes: agents commit locally, while the host alone fetches, pushes, and opens the PR.
+`sbx secret set openai` prompts on the host; proxy-managed credentials stay on the host rather than becoming files or environment variables in the VM ([credential storage](https://docs.docker.com/ai/sandboxes/configuration/credentials/#store-a-secret)). Do not grant a `github` service secret in this example: the host performs GitHub operations. **A prompt alone does not enforce that rule:** SSH agent forwarding is enabled by default, and sandbox processes can request signatures from a forwarded host key. If remote Git access must stay host-only, disable that route with `sbx settings set ssh.agentForwardingEnabled false` and restart the daemon before creating these sandboxes ([SSH forwarding setting](https://docs.docker.com/ai/sandboxes/configuration/settings/#sshagentforwardingenabled)).
 
 Every run below uses Docker's published v3 Codex workload and one compatible v3 local mixin, exactly the combination supported by `--kit` ([published workload and mixins](https://docs.docker.com/ai/sandboxes/customize/use-kits/#run-a-kit), [add mixins](https://docs.docker.com/ai/sandboxes/customize/use-kits/#add-mixins)). The role instructions guide the agent; they are not permission enforcement, so each interactive prompt also states the Git boundary.
 

@@ -6,7 +6,7 @@ This card covers **local** Docker Sandboxes; cloud agents use a separate credent
 sbx secret set openai
 ```
 
-The builder, tests, and review sandboxes do not need a GitHub credential: they commit only in their private clones, while the host performs every fetch, push, and PR operation. `sbx login` is a separate Docker sign-in, not an OpenAI or GitHub secret ([local usage: sign in](https://docs.docker.com/ai/sandboxes/usage/#sign-in), [Docker Hub registry behavior](https://docs.docker.com/ai/sandboxes/configuration/credentials/#registry-credentials)).
+The builder, tests, and review sandboxes are not granted a `github` **service secret**: they commit in private clones, while the example has the host perform fetch, push, and PR operations. That is not a complete Git credential boundary by itself: SSH agent forwarding is enabled by default, so a sandbox process can ask a forwarded host key to sign (the private key stays on the host). Disable `ssh.agentForwardingEnabled` and restart the daemon if that signing authority must not reach sandboxes ([SSH forwarding setting](https://docs.docker.com/ai/sandboxes/configuration/settings/#sshagentforwardingenabled)). `sbx login` is a separate Docker sign-in, not an OpenAI or GitHub service secret ([local usage: sign in](https://docs.docker.com/ai/sandboxes/usage/#sign-in), [Docker Hub registry behavior](https://docs.docker.com/ai/sandboxes/configuration/credentials/#registry-credentials)).
 
 ## Physical storage on the host
 
