@@ -1,10 +1,9 @@
 # Docker Sandbox Kits package environments and access requests
 
-Question: What is the [Docker Sandbox Kit Specification v3](https://www.docker.com/blog/docker-sandbox-kit-spec/), and how can a developer use it?
+Start with [a concrete Kit example](what-are-kits.md); follow the linked cards for details.
 
-Start with [what a Kit is](what-are-kits.md), then choose a short card:
+## Questions and answers
 
-- [Composition](composition.md) — workload, mixins, and sets.
-- [Permissions](permissions.md) — requests, enforcement, and limits.
-- [Try it](try-it.md) — the official local example.
-- [Kits versus Google AX](compare-ax.md) — which problem each addresses.
+1. **What is the Docker Sandbox Kit spec, and how do I use it?** A Kit packages software and access requests as an OCI image; `sbx` interprets them when it creates a sandbox. See [the example](what-are-kits.md) and [local steps](try-it.md).
+2. **How does it compare with Google AX?** Kits describe an environment and its requested access; AX creates and tracks tasks on a Kubernetes/Agent Substrate cluster. See [the division of jobs](compare-ax.md).
+3. **What exactly is a Kit, and which products compete on which dimensions?** The nearest alternatives differ by layer: environment definitions, sandbox runtimes, and fleet orchestrators. See [the concrete model](what-are-kits.md), [alternatives and criteria](alternatives.md), and [AX's separate role](compare-ax.md).
