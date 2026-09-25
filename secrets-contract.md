@@ -44,3 +44,5 @@ OAuth follows the same isolation goal: the host handles sign-in, token refresh, 
 Role prompt text does not install, authorize, or confine a credential: `agent-context@1` has no permission surface and contributes only instructions ([`agent-context@1`](https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/capabilities/com.docker.sandbox/agent-context@1.md)). The enforceable boundary is the resolved credential, binding, proxy, and network policy—not what a role tells the model.
 
 One implementation caveat: the specification requires resolution to fail when a required credential has no binding, but current `sbx` non-interactive runs instead start with the credential withheld and print a warning; unattended workflows must pre-create the binding ([spec requirement](https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/capabilities/com.docker.sandbox/credential@1.md#runtime-behavior), [`sbx` non-interactive limitation](https://docs.docker.com/ai/sandboxes/configuration/credentials/#first-run-approval)).
+
+Related: [step-by-step proxy flow](secret-injection-flow.md) · [microsandbox comparison](compare-microsandbox-secrets.md).
